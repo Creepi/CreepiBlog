@@ -13,12 +13,12 @@
           linesColor="#fff"
           :linesWidth="1"
           :lineLinked="false"
-          :lineOpacity="0"
+          :lineOpacity="1"
           :linesDistance="150"
-          :moveSpeed="5"
+          :moveSpeed="10"
           :hoverEffect="false"
           hoverMode="grab"
-          :clickEffect="true"
+          :clickEffect="false"
           clickMode="repulse"
         ></vue-particles>
       </div>
@@ -35,14 +35,14 @@
           <div class="app-brand">Creepi</div>
         </div>
         <div class="menu-wrap">
-          <a href="#/home" ishover="true">Home</a>
-          <a href="#/home">News</a>
-          <a href="#/home">TimeLine</a>
-          <a href="#/home">Tools</a>
-          <a href="#/home">Docs</a>
+          <a href="#/home" :class="$route.name === 'Home'?'active':''">Home</a>
+          <a href="#/news" :class="$route.name === 'News'?'active':''">News</a>
+          <a href="#/timeline" :class="$route.name === 'Timeline'?'active':''">TimeLine</a>
+          <a href="#/tools" :class="$route.name === 'Tools'?'active':''">Tools</a>
+          <a href="#/docs" :class="$route.name === 'Docs'?'active':''">Docs</a>
         </div>
       </div>
-      <div class="main-middle">213</div>
+      <router-view class="main-middle"></router-view>
     </div>
   </div>
 </template>
@@ -51,35 +51,41 @@
 export default {
   data() {
     return {
+      router: [{}],
       userAnimate: null
     }
   },
   mounted() {
-    this.userAnimate = this.$anime.timeline({
-      easing: 'easeOutExpo',
-      duration: 1500
-    })
-    this.userAnimate
-      .add({
-        targets: '.user-logo',
-        rotate: '360deg',
-        opacity: '1',
-        backgroundColor: '#FFF',
-        borderRadius: ['0%', '50%']
-      })
-      .add({
-        targets: '.user-logo',
-        scale: '0.9',
-        translateY: '-100%'
-      })
-    this.$anime({
-      targets: '.menu-wrap',
-      bottom: '15%',
-      borderRadius: ['0%', '50%'],
-      easing: 'easeInOutQuad'
-    })
+    this.initAnimate()
+    console.log(this.$route.name)
   },
-  methods: {}
+  methods: {
+    initAnimate() {
+      this.userAnimate = this.$anime.timeline({
+        easing: 'easeOutExpo',
+        duration: 1500
+      })
+      this.userAnimate
+        .add({
+          targets: '.user-logo',
+          rotate: '360deg',
+          opacity: '1',
+          backgroundColor: '#FFF',
+          borderRadius: ['0%', '50%']
+        })
+        .add({
+          targets: '.user-logo',
+          scale: '0.9',
+          translateY: '-100%'
+        })
+      this.$anime({
+        targets: '.menu-wrap',
+        bottom: '8%',
+        borderRadius: ['0%', '50%'],
+        easing: 'easeInOutQuad'
+      })
+    }
+  }
 }
 </script>
 
@@ -186,19 +192,31 @@ export default {
           border: 6px solid transparent;
           // border: 6px solid hsla(0, 0%, 100%, 0.1);
           border-radius: 50%;
-          &:hover:after {
-            content: '';
-            display: block;
-            height: 80px;
-            width: 80px;
-            position: absolute;
-            left: calc(50% - 40px);
-            top: calc(50% - 40px);
-            background: url('../assets/svgs/circle.svg') no-repeat;
-            background-size: 100% 100%;
-            -webkit-animation: circle-zoom-in 0.6s ease;
-            animation: circle-zoom-in 0.6s ease;
+          &:hover {
+            transition: 0.5s;
+            border: 6px solid hsla(0, 0%, 100%, 0.2);
           }
+          &:not(.active):hover:after {
+            content: '';
+            box-sizing: border-box;
+            display: block;
+            height: 6px;
+            width: 6px;
+            background: #fff;
+            position: absolute;
+            border-radius: 50%;
+            // border: 3px solid hsla(0, 0%, 100%, 0.1);
+            left: -6px;
+            top: 37px;
+            // background: url('../assets/svgs/circle.svg') no-repeat;
+            // background-size: 100% 100%;
+            transform-origin: 46px 3px;
+            -webkit-animation: circle-zoom-in 2s linear infinite;
+            animation: circle-zoom-in 2s linear infinite;
+          }
+        }
+        .active {
+          border: 6px solid hsla(0, 0%, 100%, 0.2);
         }
       }
     }
