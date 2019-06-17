@@ -1,8 +1,11 @@
 <template>
   <div id="wavesurfer">
     <div :class="['wave-wrap',!loading?'moveUp':'']">
-      <div v-show="!loading" class="music-pic">
-        <img src="../../assets/musics/cover.jpeg" alt>
+      <div v-show="!loading" :class="['music-pic']">
+        <img src="../../assets/musics/cover.jpeg" :class="[isPlaying?'rotate':'']" alt>
+        <div :class="isPlaying?'btn-pause':'btn-play'" @click="togglePlayer">
+          <i :class="['iconfont', isPlaying?'icon-pause':'icon-play']"></i>
+        </div>
       </div>
       <div :show="!loading" id="waveform"></div>
       <div v-if="loading" class="wave-mask">
@@ -19,7 +22,8 @@ export default {
   data() {
     return {
       wavesurfer: null,
-      loading: true
+      loading: true,
+      isPlaying: false
     }
   },
   created() {
@@ -29,16 +33,28 @@ export default {
         waveColor: 'hsla(0, 0%, 100%, 0.2)',
         progressColor: '#fff',
         cursorColor: 'transparent',
-        hideScrollbar: true,
+        hideScrollbar: true
       })
       this.wavesurfer.on('ready', () => {
         this.loading = false
         this.wavesurfer.play()
+        this.isPlaying = true
       })
       this.wavesurfer.load(
-        '../../assets/musics/The XX - Intro - intro.mp3'
+        'http://192.168.1.20:8000/The%20XX%20-%20Intro%20-%20intro.mp3'
       )
     })
+  },
+  methods: {
+    togglePlayer() {
+      if (this.isPlaying) {
+        this.wavesurfer.pause()
+
+      }else{
+        this.wavesurfer.play()
+      }
+      this.isPlaying = !this.isPlaying
+    }
   }
 }
 </script>
@@ -52,14 +68,49 @@ export default {
     display: flex;
     justify-content: center;
     .music-pic {
+      position: relative;
       width: 128px;
-      margin-right: 20px;
+      height: 128px;
+      &:hover {
+        .btn-pause {
+          opacity: 1;
+          background: rgba(0, 0, 0, 0.8);
+        }
+        .btn-play {
+          opacity: 1;
+          background: rgba(0, 0, 0, 0.8);
+        }
+      }
       img {
+        transition: 1s;
         width: 100%;
       }
+      .btn-pause,.btn-play {
+        opacity: 0;
+        position: absolute;
+        transition: 1s;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        line-height: 128px;
+        i {
+          font-size: 60px;
+          color: hsla(0, 0%, 100%, 0.2);
+        }
+      }
+    }
+    .rotate {
+
+      overflow: hidden;
+      border-radius: 50%;
+      animation: rotate 10s linear infinite;
     }
     #waveform {
       width: 900px;
+      margin-left: 20px;
     }
     .loading {
       display: inline-block;

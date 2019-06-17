@@ -39,7 +39,7 @@
         </div>
         <div class="site-logo">
           <div class="image-wrap">
-            <img src="../assets/images/logo.png" alt>
+            <img src="../assets/musics/cover.jpeg" alt>
           </div>
           <div class="app-brand">Creepi</div>
         </div>
@@ -227,6 +227,9 @@ export default {
         left: 30px;
         display: flex;
         .image-wrap {
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 10px;
           img {
             width: 50px;
             height: 50px;
