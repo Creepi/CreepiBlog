@@ -3,7 +3,7 @@
     <div :class="['wave-wrap',!loading?'moveUp':'']">
       <div v-show="!loading" :class="['music-pic']">
         <img src="../../assets/musics/cover.jpeg" :class="[isPlaying?'rotate':'']" alt>
-        <div :class="isPlaying?'btn-pause':'btn-play'" @click="togglePlayer">
+        <div :class="isPlaying?'btn-pause':'btn-play'" @click="playPause">
           <i :class="['iconfont', isPlaying?'icon-pause':'icon-play']"></i>
         </div>
       </div>
@@ -35,25 +35,32 @@ export default {
         cursorColor: 'transparent',
         hideScrollbar: true
       })
+      // this.wavesurfer.on('audioprocess', () => {
+      //   this.isPlaying = true
+      // })
+      this.wavesurfer.on('play', () => {
+        this.isPlaying = true
+      })
+      this.wavesurfer.on('pause', () => {
+        this.isPlaying = false
+      })
       this.wavesurfer.on('ready', () => {
         this.loading = false
+        this.wavesurfer.pause()
         this.wavesurfer.play()
         this.isPlaying = true
       })
-      this.wavesurfer.load(
-        'http://192.168.1.20:8000/The%20XX%20-%20Intro%20-%20intro.mp3'
-      )
+      this.wavesurfer.on('finish', () => {
+        this.isPlaying = false
+      })
+      // this.wavesurfer.load(
+      //   'https://m10.music.126.net/20190617214422/c97070eb8b5d73bfe3faca58aebcd8c5/ymusic/34e4/5c9e/2e72/a0b14202265ddd633c1181d2c3fcd766.mp3'
+      // )
     })
   },
   methods: {
-    togglePlayer() {
-      if (this.isPlaying) {
-        this.wavesurfer.pause()
-
-      }else{
-        this.wavesurfer.play()
-      }
-      this.isPlaying = !this.isPlaying
+    playPause() {
+      this.wavesurfer.playPause()
     }
   }
 }
