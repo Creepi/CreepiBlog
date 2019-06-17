@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <div class="color-wrap">
+    <div :class="['color-wrap',hasHeader === 1?'back-blur':'']">
       <div class="landscape"></div>
       <div class="filter"></div>
       <div class="canvas-back">
@@ -25,8 +25,17 @@
     </div>
     <div id="main-content">
       <div class="main-top">
-        <div class="user-logo">
-          <img src="../assets/images/main/user.jpeg" alt>
+        <div class="profile">
+          <div class="user-logo">
+            <img src="../assets/images/main/user.jpeg" alt>
+          </div>
+          <div class="user-motto">
+            <div class="user-me">Creepi</div>
+            <div class="user-text">welcome to the real world, it sucks, but you will love it</div>
+          </div>
+        </div>
+        <div class="music-box">
+          <music-wave></music-wave>
         </div>
         <div class="site-logo">
           <div class="image-wrap">
@@ -43,27 +52,44 @@
         </div>
       </div>
       <router-view class="main-middle"></router-view>
+      <div class="main-footer">
+        <div class="social-wrap">
+          <a class="iconfont icon-twitter"></a>
+          <a class="iconfont icon-ins"></a>
+          <a class="iconfont icon-github"></a>
+        </div>
+        <div class="motto">
+          Sometimes ever,sometimes never.
+          <span>@Author:Creepi</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import musicWave from '@/components/wavesurfer/'
+
 export default {
+  components: {
+    musicWave
+  },
   data() {
     return {
       router: [{}],
-      userAnimate: null
+      userAnimate: null,
+      hasHeader: 0
     }
   },
   mounted() {
+    window.addEventListener('scroll', this.handleScroll)
     this.initAnimate()
-    console.log(this.$route.name)
   },
   methods: {
     initAnimate() {
       this.userAnimate = this.$anime.timeline({
         easing: 'easeOutExpo',
-        duration: 1500
+        duration: 1000
       })
       this.userAnimate
         .add({
@@ -76,14 +102,28 @@ export default {
         .add({
           targets: '.user-logo',
           scale: '0.9',
-          translateY: '-100%'
+          translateY: '-120%'
+        })
+        .add({
+          targets: '.user-motto',
+          translateY: '-85px',
+          opacity: 1,
+          duration: '1500'
         })
       this.$anime({
         targets: '.menu-wrap',
         bottom: '8%',
         borderRadius: ['0%', '50%'],
-        easing: 'easeInOutQuad'
+        easing: 'easeInOutQuad',
       })
+    },
+    handleScroll() {
+      const maxHeight = document.body.offsetHeight
+      this.top =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        window.pageYOffset // 要做兼容 在模拟器能正常获取scrolltop在微信h5页面和手机的浏览器页面一直为0
+      this.hasHeader = this.top > maxHeight ? 1 : 0
     }
   }
 }
@@ -96,6 +136,10 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  .back-blur {
+    transition: 0.2s;
+    filter: grayscale(50%) brightness(80%) blur(3px);
+  }
   .color-wrap {
     position: fixed;
     top: 0;
@@ -141,20 +185,42 @@ export default {
     .main-top {
       width: 100%;
       height: 100%;
-      .user-logo {
+      .music-box {
+        width: 100%;
         position: absolute;
-        left: calc(50% - 50px);
+        top: 50%;
+      }
+      .profile {
+        position: absolute;
         top: 30%;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        overflow: hidden;
-        transform-origin: center center;
-        opacity: 0;
-        img {
-          width: 100%;
+        width: 100%;
+        .user-logo {
+          margin: 0 auto;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          overflow: hidden;
+          transform-origin: center center;
+          opacity: 0;
+          img {
+            width: 100px;
+          }
+        }
+        .user-motto {
+          color: #fff;
+          opacity: 0;
+          .user-me{
+            font-family: halofont;
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .user-text{
+            padding-top: 10px;
+            font-family: halofont;
+          }
         }
       }
+
       .site-logo {
         position: absolute;
         top: 30px;
@@ -224,9 +290,28 @@ export default {
       width: 100%;
       height: 100%;
       max-width: 1200px;
-      background: #fff;
       margin: 0 auto;
       border-radius: 5px;
+    }
+    .main-footer {
+      // position: absolute;
+      bottom: 0px;
+      .social-wrap {
+        margin-top: 100px;
+        a {
+          color: hsla(0, 0%, 100%, 0.68);
+          text-decoration: none;
+          margin: 0 20px;
+          font-size: 28px;
+          // -webkit-transition: color 0.2s;
+          // -o-transition: color 0.2s;
+          // transition: color 0.2s;
+        }
+      }
+      .motto {
+        color: hsla(0, 0%, 100%, 0.68);
+        margin: 30px 0;
+      }
     }
   }
 }
