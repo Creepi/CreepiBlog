@@ -138,14 +138,14 @@ export default {
   overflow: hidden;
   .back-blur {
     transition: 0.2s;
-    filter: grayscale(50%) brightness(80%) blur(3px);
+    filter: grayscale(50%) brightness(80%) blur(5px);
   }
   .color-wrap {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
     background: black;
     background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
     animation-fill-mode: both;
