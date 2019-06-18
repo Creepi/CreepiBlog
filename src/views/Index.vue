@@ -114,7 +114,8 @@ export default {
         targets: '.menu-wrap',
         bottom: '8%',
         borderRadius: ['0%', '50%'],
-        easing: 'easeInOutQuad'
+        easing: 'easeInOutQuad',
+        delay: 1000
       })
     },
     handleScroll() {
@@ -229,6 +230,8 @@ export default {
         left: 30px;
         display: flex;
         .image-wrap {
+          width: 50px;
+          height: 50px;
           border-radius: 50%;
           overflow: hidden;
           margin-right: 10px;
