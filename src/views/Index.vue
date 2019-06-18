@@ -114,7 +114,7 @@ export default {
         targets: '.menu-wrap',
         bottom: '8%',
         borderRadius: ['0%', '50%'],
-        easing: 'easeInOutQuad',
+        easing: 'easeInOutQuad'
       })
     },
     handleScroll() {
@@ -137,7 +137,6 @@ export default {
   height: 100%;
   overflow: hidden;
   .back-blur {
-    transition: 0.2s;
     filter: grayscale(50%) brightness(80%) blur(5px);
   }
   .color-wrap {
@@ -147,6 +146,7 @@ export default {
     width: calc(100% + 12px);
     height: calc(100% + 12px);
     background: black;
+    transition: 1.5s;
     background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
     animation-fill-mode: both;
     mix-blend-mode: overlay;
@@ -159,6 +159,7 @@ export default {
       background-position: center bottom;
     }
     .filter {
+      transition: 1s;
       width: 100%;
       height: 100%;
       position: absolute;
@@ -168,6 +169,7 @@ export default {
       animation: colorChange 30s ease-in-out infinite;
       animation-fill-mode: both;
       mix-blend-mode: overlay;
+      filter: grayscale(00%) brightness(100%);
     }
     .canvas-back {
       width: 100%;
@@ -209,12 +211,12 @@ export default {
         .user-motto {
           color: #fff;
           opacity: 0;
-          .user-me{
+          .user-me {
             font-family: halofont;
             font-size: 20px;
             font-weight: bold;
           }
-          .user-text{
+          .user-text {
             padding-top: 10px;
             font-family: halofont;
           }

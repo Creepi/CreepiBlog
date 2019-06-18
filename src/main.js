@@ -8,7 +8,8 @@ import NProgress from 'nprogress' // 进度条
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import '../src/styles/const.scss'
+import '../src/styles'
+import store from './store' // 引入store
 
 Vue.use(VueParticles)
 Vue.prototype.$anime = anime
@@ -29,6 +30,7 @@ router.afterEach(() => {
 new Vue({
   el: '#app',
   router,
+  store,
   anime,
   components: { App },
   template: '<App/>'

@@ -1,21 +1,23 @@
 <template>
   <div id="page-home">
-    <div class="service">
-
+    <div class="weather-wrap">
+      <Wheather></Wheather>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+import Wheather from './components/wheather'
 
+export default {
+  data() {
+    return {}
+  },
+  components: {
+    Wheather
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .service{
-    height: 500px;
-    background: #fff;
-    border-radius: 5px;
-  }
 </style>

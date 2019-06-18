@@ -53,9 +53,9 @@ export default {
       this.wavesurfer.on('finish', () => {
         this.isPlaying = false
       })
-      // this.wavesurfer.load(
-      //   'https://m10.music.126.net/20190617214422/c97070eb8b5d73bfe3faca58aebcd8c5/ymusic/34e4/5c9e/2e72/a0b14202265ddd633c1181d2c3fcd766.mp3'
-      // )
+      this.wavesurfer.load(
+        'http://0.0.0.0:3000/musics/The%20XX%20-%20Intro%20-%20intro.mp3'
+      )
     })
   },
   methods: {
@@ -103,9 +103,10 @@ export default {
         border-radius: 50%;
         transform: translate(-50%, -50%);
         line-height: 128px;
+        cursor: pointer;
         i {
           font-size: 60px;
-          color: hsla(0, 0%, 100%, 0.2);
+          color: hsla(0, 0%, 100%, 0.6);
         }
       }
     }
