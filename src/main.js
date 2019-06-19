@@ -5,12 +5,16 @@ import 'nprogress/nprogress.css' // 这个样式必须引入
 import anime from 'animejs'
 import VueParticles from 'vue-particles'
 import NProgress from 'nprogress' // 进度条
+import viserVue from 'viser-vue'
+import _ from 'lodash'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '../src/styles'
 import store from './store' // 引入store
 
+Vue.prototype._ = _
+Vue.use(viserVue)
 Vue.use(VueParticles)
 Vue.prototype.$anime = anime
 Vue.config.productionTip = false
