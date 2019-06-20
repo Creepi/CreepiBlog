@@ -1,11 +1,10 @@
 <template>
-  <div id="ccc">
-    <v-chart :force-fit="true" :height="height" :data="charData" class="chart" :scale="scale">
+  <div>
+    <v-chart :force-fit="true" :height="height" :data="charData">
       <v-tooltip/>
       <v-legend/>
       <v-axis data-key="temper" :label="XAxisLabel"/>
       <v-axis data-key="date" :label="YAxisLabel"/>
-
       <v-line :position="'date*temper'" color="type"/>
       <v-point :position="'date*temper'" :size="3" shape="circle"></v-point>
     </v-chart>
@@ -20,7 +19,7 @@ export default {
       height: 400,
       XAxisLabel: {
         formatter: val => {
-          return `${val + '°C'}`
+          return `${val}°C`
         }
       },
       YAxisLabel: {
