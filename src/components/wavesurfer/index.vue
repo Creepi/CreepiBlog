@@ -2,7 +2,7 @@
   <div id="wavesurfer">
     <div :class="['wave-wrap',!loading?'moveUp':'']">
       <div v-show="!loading" :class="['music-pic']">
-        <img src="../../assets/musics/cover.jpeg" :class="[isPlaying?'rotate':'']" alt>
+        <img :src="musicPic" :class="[isPlaying?'rotate':'']" alt>
         <div :class="isPlaying?'btn-pause':'btn-play'" @click="playPause">
           <i :class="['iconfont', isPlaying?'icon-pause':'icon-play']"></i>
         </div>
@@ -19,46 +19,68 @@
 import WaveSurfer from 'wavesurfer.js'
 
 export default {
+  props: {
+    musicsData: {
+      type: Array,
+      default: () => [2]
+    }
+  },
+  watch: {
+    musicsData: {
+      handler: (newData, oldData) => {
+        this.musicData = newData
+      },
+      deep: true
+    }
+  },
   data() {
     return {
       wavesurfer: null,
       loading: true,
-      isPlaying: false
+      isPlaying: false,
+      musicData: this.musicsData,
+      musicUrl: '',
+      musicPic: ''
     }
   },
-  created() {
-    this.$nextTick(() => {
-      this.wavesurfer = WaveSurfer.create({
-        container: '#waveform',
-        waveColor: 'hsla(0, 0%, 100%, 0.2)',
-        progressColor: '#fff',
-        cursorColor: 'transparent',
-        hideScrollbar: true
-      })
-      // this.wavesurfer.on('audioprocess', () => {
-      //   this.isPlaying = true
-      // })
-      this.wavesurfer.on('play', () => {
-        this.isPlaying = true
-      })
-      this.wavesurfer.on('pause', () => {
-        this.isPlaying = false
-      })
-      this.wavesurfer.on('ready', () => {
-        this.loading = false
-        this.wavesurfer.pause()
-        this.wavesurfer.play()
-        this.isPlaying = true
-      })
-      this.wavesurfer.on('finish', () => {
-        this.isPlaying = false
-      })
-      this.wavesurfer.load(
-        'http://0.0.0.0:3000/musics/The%20XX%20-%20Intro%20-%20intro.mp3'
-      )
-    })
+  mounted() {
+    this.musicData = this.musicsData
+    this.musicUrl = this.musicsData[0].url
+    this.musicPic = this.musicsData[0].pic
+
+    this.waveInit()
   },
   methods: {
+    waveInit() {
+      this.$nextTick(() => {
+        this.wavesurfer = WaveSurfer.create({
+          container: '#waveform',
+          waveColor: 'hsla(0, 0%, 100%, 0.2)',
+          progressColor: '#fff',
+          cursorColor: 'transparent',
+          hideScrollbar: true
+        })
+        // this.wavesurfer.on('audioprocess', () => {
+        //   this.isPlaying = true
+        // })
+        this.wavesurfer.on('play', () => {
+          this.isPlaying = true
+        })
+        this.wavesurfer.on('pause', () => {
+          this.isPlaying = false
+        })
+        this.wavesurfer.on('ready', () => {
+          this.loading = false
+          this.wavesurfer.pause()
+          this.wavesurfer.play()
+          this.isPlaying = true
+        })
+        this.wavesurfer.on('finish', () => {
+          this.isPlaying = false
+        })
+        this.wavesurfer.load(this.musicUrl)
+      })
+    },
     playPause() {
       this.wavesurfer.playPause()
     }
@@ -92,7 +114,8 @@ export default {
         transition: 1s;
         width: 100%;
       }
-      .btn-pause,.btn-play {
+      .btn-pause,
+      .btn-play {
         opacity: 0;
         position: absolute;
         transition: 1s;
@@ -111,7 +134,6 @@ export default {
       }
     }
     .rotate {
-
       overflow: hidden;
       border-radius: 50%;
       animation: rotate 10s linear infinite;

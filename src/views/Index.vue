@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="music-box">
-          <music-wave></music-wave>
+          <music-wave v-if="musicsData.length>0" :musics-data="musicsData"></music-wave>
         </div>
         <div class="site-logo">
           <div class="image-wrap">
@@ -69,6 +69,7 @@
 
 <script>
 import musicWave from '@/components/wavesurfer/'
+import { musicsGet } from '@/api'
 
 export default {
   components: {
@@ -78,14 +79,21 @@ export default {
     return {
       router: [{}],
       userAnimate: null,
-      hasHeader: 0
+      hasHeader: 0,
+      musicsData: []
     }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
+    this.fetchData()
     this.initAnimate()
   },
   methods: {
+    fetchData() {
+      musicsGet().then(res => {
+        this.musicsData = res.data
+      })
+    },
     initAnimate() {
       this.userAnimate = this.$anime.timeline({
         easing: 'easeOutExpo',
@@ -296,7 +304,6 @@ export default {
     }
     .main-middle {
       width: 100%;
-      height: 100%;
       max-width: 1200px;
       margin: 0 auto;
       border-radius: 5px;

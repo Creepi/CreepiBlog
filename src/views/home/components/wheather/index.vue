@@ -1,8 +1,8 @@
 <template>
   <div class="card-wrap">
     <div class="card-header">
-      <div class="card-header-left">{{weatherData.city}}一周天气</div>
-      <div class="card-header-right">{{weatherData.country}}</div>
+      <div v-if="weatherData" class="card-header-left">{{weatherData.city}}一周天气</div>
+      <div v-if="weatherData" class="card-header-right">{{weatherData.country}}</div>
     </div>
     <div class="weather-wrap">
       <div class="chart-wrap">
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import weatherGet from '@/api/outer'
+import { weatherGet } from '@/api/outer'
 import LineChart from '@/components/g2charts/LineChart'
 
 export default {
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      weatherData: null,
+      weatherData: {},
       chartData: []
     }
   },

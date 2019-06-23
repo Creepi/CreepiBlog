@@ -6,7 +6,7 @@
       <v-axis data-key="temper" :label="XAxisLabel"/>
       <v-axis data-key="date" :label="YAxisLabel"/>
       <v-line :position="'date*temper'" color="type"/>
-      <v-point :position="'date*temper'" :size="3" shape="circle"></v-point>
+      <v-point :position="'date*temper'" :size="3" shape="circle" color="type"></v-point>
     </v-chart>
   </div>
 </template>
