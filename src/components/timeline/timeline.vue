@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import {pageHref} from '@/utils/funcs'
+import pageHref from '@/utils/funcs'
+
 export default {
   props: {
     lineData: {
@@ -61,7 +62,7 @@ export default {
         this.initAnimation.play()
       })
     },
-    pageHref: pageHref
+    pagehref: pageHref
   }
 }
 </script>

@@ -1,3 +1,3 @@
-export function pageHref(url) {
+export default function pageHref(url) {
   return window.open(url);
 }

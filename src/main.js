@@ -12,6 +12,7 @@ import App from './App'
 import router from './router'
 import '../src/styles'
 import store from './store' // 引入store
+import '../src/assets/svgs'
 
 Vue.prototype._ = _
 Vue.use(viserVue)

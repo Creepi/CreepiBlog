@@ -9,7 +9,7 @@
       </div>
       <div :show="!loading" id="waveform"></div>
       <div v-if="loading" class="wave-mask">
-        <img class="loading" src="../../assets/images/main/triangle.svg" alt>
+        <svg-icon class="svg-loading" iconClass="bars"></svg-icon>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@ export default {
   },
   watch: {
     musicsData: {
-      handler: (newData, oldData) => {
+      handler: newData => {
         this.musicData = newData
       },
       deep: true
@@ -151,6 +151,14 @@ export default {
       height: 24px;
       transform-origin: center center;
       animation: rotate 3s ease-in-out infinite forwards;
+    }
+  }
+  .wave-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    .svg-loading {
+      fill: hsla(0, 0%, 100%, 0.6);
     }
   }
   .moveUp {
