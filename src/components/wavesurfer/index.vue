@@ -1,15 +1,19 @@
 <template>
   <div id="wavesurfer">
-    <div :class="['wave-wrap',!loading?'moveUp':'']">
-      <div v-show="!loading" :class="['music-pic']">
+    <div :class="['wave-wrap',isLoaded?'moveUp':'']">
+      <div v-show="isLoaded" :class="['music-pic']">
         <img :src="musicPic" :class="[isPlaying?'rotate':'']" alt>
         <div :class="isPlaying?'btn-pause':'btn-play'" @click="playPause">
           <i :class="['iconfont', isPlaying?'icon-pause':'icon-play']"></i>
         </div>
       </div>
       <div :show="!loading" id="waveform"></div>
-      <div v-if="loading" class="wave-mask">
-        <svg-icon class="svg-loading" iconClass="bars"></svg-icon>
+      <div class="music-vol">
+        <svg-icon iconClass="volumn"></svg-icon>
+        <div class="vol-count"> <span>vol<br>100%</span> </div>
+      </div>
+      <div v-if="!isLoaded" class="wave-mask">
+        <svg-icon class="svg-loading loading" iconClass="triangle"></svg-icon>
       </div>
     </div>
   </div>
@@ -36,6 +40,7 @@ export default {
   data() {
     return {
       wavesurfer: null,
+      isLoaded: false,
       loading: true,
       isPlaying: false,
       musicData: this.musicsData,
@@ -47,7 +52,6 @@ export default {
     this.musicData = this.musicsData
     this.musicUrl = this.musicsData[0].url
     this.musicPic = this.musicsData[0].pic
-
     this.waveInit()
   },
   methods: {
@@ -70,10 +74,9 @@ export default {
           this.isPlaying = false
         })
         this.wavesurfer.on('ready', () => {
-          this.loading = false
+          this.isLoaded = true
           this.wavesurfer.pause()
-          this.wavesurfer.play()
-          this.isPlaying = true
+          // this.wavesurfer.play()
         })
         this.wavesurfer.on('finish', () => {
           this.isPlaying = false
@@ -130,6 +133,32 @@ export default {
         i {
           font-size: 60px;
           color: hsla(0, 0%, 100%, 0.6);
+        }
+      }
+    }
+    .music-vol {
+      position: relative;
+      width: 128px;
+      height: 128px;
+      svg {
+        width: 110px;
+        height: 110px;
+        margin: 9px;
+      }
+      .vol-count {
+        display: inline-block;
+        width: 128px;
+        height: 128px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        color: #fff;
+        vertical-align: middle;
+        font-family: halofont;
+        span{
+          display: inline-block;
+          margin: 45px 0;
         }
       }
     }
