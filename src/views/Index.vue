@@ -1,8 +1,9 @@
 <template>
   <div id="main">
     <div :class="['color-wrap',hasHeader === 1?'back-blur':'']">
-      <div class="landscape"></div>
-      <div class="filter"></div>
+      <div class="landscape">
+        <div class="filter"></div>
+      </div>
       <div class="canvas-back">
         <vue-particles
           color="#fff"
@@ -84,9 +85,10 @@ export default {
     }
   },
   mounted() {
-    // window.addEventListener('scroll', this.handleScroll)
     this.fetchData()
     this.initAnimate()
+    // window.addEventListener('scroll', this.handleScroll)
+
   },
   methods: {
     fetchData() {
@@ -134,7 +136,10 @@ export default {
         window.pageYOffset // 要做兼容 在模拟器能正常获取scrolltop在微信h5页面和手机的浏览器页面一直为0
       this.hasHeader = this.top > maxHeight ? 1 : 0
     }
-  }
+  },
+  // destroyed() {
+  //   window.removeEventListener('scroll', this.handleScroll)
+  // }
 }
 </script>
 
@@ -157,6 +162,7 @@ export default {
     background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
     animation-fill-mode: both;
     mix-blend-mode: overlay;
+    z-index: -20;
     .landscape {
       width: 100%;
       height: 100%;
@@ -168,14 +174,10 @@ export default {
     .filter {
       width: 100%;
       height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
       background: #fe5757;
       animation: colorChange 30s ease-in-out infinite;
       animation-fill-mode: both;
       mix-blend-mode: overlay;
-      filter: grayscale(00%) brightness(100%);
     }
     .canvas-back {
       width: 100%;

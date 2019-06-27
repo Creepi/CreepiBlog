@@ -1,14 +1,14 @@
 <template>
   <div id="wavesurfer">
     <div :class="['wave-wrap',isLoaded?'moveUp':'']">
-      <div v-show="isLoaded" :class="['music-pic']">
+      <div :class="['music-pic']">
         <img :src="musicPic" :class="[isPlaying?'rotate':'']" alt>
         <div :class="isPlaying?'btn-pause':'btn-play'" @click="playPause">
           <i :class="['iconfont', isPlaying?'icon-pause':'icon-play']"></i>
         </div>
       </div>
       <div :show="isLoaded" id="waveform"></div>
-      <div class="music-vol">
+      <div :show="isLoaded" class="music-vol">
         <svg-icon iconClass="volumn"></svg-icon>
         <div class="vol-count"> <span>vol<br>100%</span> </div>
       </div>
