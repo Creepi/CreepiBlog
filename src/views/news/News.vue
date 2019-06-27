@@ -7,7 +7,7 @@
       </div>
       <div class="card-content">
       </div>
-      <Cloading></Cloading>
+      <Cloading v-if="isLoading"></Cloading>
     </div>
     <div class="card-wrap">
       <div class="card-header">
@@ -33,6 +33,7 @@ export default {
   },
   data() {
     return {
+      isLoading: true,
       resData: {}
     }
   },

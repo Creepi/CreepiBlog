@@ -7,12 +7,12 @@
           <i :class="['iconfont', isPlaying?'icon-pause':'icon-play']"></i>
         </div>
       </div>
-      <div :show="!loading" id="waveform"></div>
+      <div :show="isLoaded" id="waveform"></div>
       <div class="music-vol">
         <svg-icon iconClass="volumn"></svg-icon>
         <div class="vol-count"> <span>vol<br>100%</span> </div>
       </div>
-      <div v-if="!isLoaded" class="wave-mask">
+      <div v-show="!isLoaded" class="wave-mask">
         <svg-icon class="svg-loading loading" iconClass="triangle"></svg-icon>
       </div>
     </div>
@@ -114,7 +114,6 @@ export default {
         }
       }
       img {
-        transition: 1s;
         width: 100%;
       }
       .btn-pause,

@@ -84,7 +84,7 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll)
+    // window.addEventListener('scroll', this.handleScroll)
     this.fetchData()
     this.initAnimate()
   },
@@ -143,8 +143,6 @@ export default {
 @import '@/styles/keyframes.scss';
 #main {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
   .back-blur {
     filter: grayscale(50%) brightness(80%) blur(5px);
   }
@@ -155,7 +153,7 @@ export default {
     width: calc(100% + 12px);
     height: calc(100% + 12px);
     background: black;
-    transition: 1.5s;
+    transition: filter 1.5s;
     background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
     animation-fill-mode: both;
     mix-blend-mode: overlay;
@@ -168,7 +166,6 @@ export default {
       background-position: center bottom;
     }
     .filter {
-      transition: 1s;
       width: 100%;
       height: 100%;
       position: absolute;
@@ -318,9 +315,6 @@ export default {
           text-decoration: none;
           margin: 0 20px;
           font-size: 28px;
-          // -webkit-transition: color 0.2s;
-          // -o-transition: color 0.2s;
-          // transition: color 0.2s;
         }
       }
       .motto {
