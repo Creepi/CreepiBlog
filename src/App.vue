@@ -10,7 +10,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import url('//at.alicdn.com/t/font_1245845_mzl6zg6i2gc.css');
+@font-face {
+  font-family: 'halofont';
+  src: url('./assets/fonts/halo.ttf') format('truetype');
+}
 html,#app,body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,5 +27,9 @@ html,#app,body {
 }
 html::-webkit-scrollbar{
     display: none;
+}
+a{
+text-decoration:none;
+color:#333;
 }
 </style>

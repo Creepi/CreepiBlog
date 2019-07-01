@@ -3,12 +3,17 @@ $border-color: #f2f2f2;
   background: #fff;
   border-radius: 5px;
   position: relative;
+  overflow: hidden;
   .card-header{
     display: flex;
     justify-content: space-between;
     padding: 18px 20px;
     border-bottom: 1px solid $border-color;
     border-radius: 5px;
+    font-family: halofont;
+    .card-header-left{
+      font-weight: bold;
+    }
   }
   .card-content{
     position: relative;

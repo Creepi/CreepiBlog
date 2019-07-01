@@ -87,7 +87,7 @@ export default {
   mounted() {
     this.fetchData()
     this.initAnimate()
-    // window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll)
 
   },
   methods: {
@@ -137,9 +137,9 @@ export default {
       this.hasHeader = this.top > maxHeight ? 1 : 0
     }
   },
-  // destroyed() {
-  //   window.removeEventListener('scroll', this.handleScroll)
-  // }
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
 }
 </script>
 
@@ -175,6 +175,7 @@ export default {
       width: 100%;
       height: 100%;
       background: #fe5757;
+      transform:translate3d(0,0,0);
       animation: colorChange 30s ease-in-out infinite;
       animation-fill-mode: both;
       mix-blend-mode: overlay;
