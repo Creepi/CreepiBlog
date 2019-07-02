@@ -27,21 +27,25 @@
         </table>
       </div>
     </div>
+    <Loading v-if="isLoading"></Loading>
   </div>
 </template>
 
 <script>
 import { weatherGet } from '@/api/outer'
 import LineChart from '@/components/g2charts/LineChart'
+import Loading from '@/components/loading/loading'
 
 export default {
   components: {
-    LineChart
+    LineChart,
+    Loading
   },
   data() {
     return {
       weatherData: {},
-      chartData: []
+      chartData: [],
+      isLoading: true
     }
   },
   created() {
@@ -70,6 +74,7 @@ export default {
             date: item.date
           })
         })
+        this.isLoading = false
       })
     }
   }
@@ -81,9 +86,10 @@ export default {
   scoped
 >
 @import '@/styles/mixin.scss';
+
 .card-wrap {
   @include card;
-
+  min-height: 350px;
   .weather-wrap {
     width: 100%;
     display: flex;

@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <div :class="['color-wrap',hasHeader === 1?'back-blur':'']">
+    <div :class="['color-wrap']">
       <div class="landscape">
         <div class="filter"></div>
       </div>
@@ -28,7 +28,7 @@
       <div class="main-top">
         <div class="profile">
           <div class="user-logo">
-            <img src="../assets/images/main/user.jpeg" alt>
+            <img src="../assets/images/main/user.jpeg" alt />
           </div>
           <div class="user-motto">
             <div class="user-me">Creepi</div>
@@ -36,11 +36,15 @@
           </div>
         </div>
         <div class="music-box">
-          <music-wave v-if="musicsData.length>0" :musics-data="musicsData"></music-wave>
+          <music-wave
+            v-if="musicsData.length>0"
+            :musics-data="musicsData"
+            :isLoading="musicLoading"
+          ></music-wave>
         </div>
         <div class="site-logo">
           <div class="image-wrap">
-            <img src="../assets/musics/cover.jpeg" alt>
+            <img src="../assets/musics/cover.jpeg" alt />
           </div>
           <div class="app-brand">Creepi</div>
         </div>
@@ -81,6 +85,7 @@ export default {
       router: [{}],
       userAnimate: null,
       hasHeader: 0,
+      musicLoading: true,
       musicsData: []
     }
   },
@@ -88,12 +93,12 @@ export default {
     this.fetchData()
     this.initAnimate()
     window.addEventListener('scroll', this.handleScroll)
-
   },
   methods: {
     fetchData() {
       musicsGet().then(res => {
         this.musicsData = res.data
+        this.musicLoading = false
       })
     },
     initAnimate() {
@@ -148,9 +153,9 @@ export default {
 @import '@/styles/keyframes.scss';
 #main {
   width: 100%;
-  .back-blur {
-    filter: grayscale(50%) brightness(80%) blur(5px);
-  }
+  // .back-blur {
+  //   // filter: grayscale(50%) brightness(80%) blur(5px);
+  // }
   .color-wrap {
     position: fixed;
     top: -8px;
@@ -158,7 +163,7 @@ export default {
     width: calc(100% + 12px);
     height: calc(100% + 12px);
     background: black;
-    transition: filter 1.5s;
+    // transition: filter 1.5s;
     background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
     animation-fill-mode: both;
     mix-blend-mode: overlay;
@@ -171,15 +176,15 @@ export default {
       background-repeat: repeat-x;
       background-position: center bottom;
     }
-    .filter {
-      width: 100%;
-      height: 100%;
-      background: #fe5757;
-      transform:translate3d(0,0,0);
-      animation: colorChange 30s ease-in-out infinite;
-      animation-fill-mode: both;
-      mix-blend-mode: overlay;
-    }
+    // .filter {
+    //   width: 100%;
+    //   height: 100%;
+    //   background: #fe5757;
+    //   transform:translate3d(0,0,0);
+    //   animation: colorChange 30s ease-in-out infinite;
+    //   animation-fill-mode: both;
+    //   mix-blend-mode: overlay;
+    // }
     .canvas-back {
       width: 100%;
       height: 100%;
