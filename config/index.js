@@ -15,14 +15,14 @@ module.exports = {
           target: 'http://0.0.0.0:3001',
           changeOrigin: true,
           pathRewrite: {
-            '^/capi': '/api'
+            '^/capi': '/capi'
           }
       },
       '/cstatics': {
         target: 'http://0.0.0.0:3001',
         changeOrigin: true,
         pathRewrite: {
-          '^/cstatics': '/'
+          '^/cstatics': '/cstatics'
         }
     }
     },
