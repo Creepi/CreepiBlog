@@ -25,7 +25,7 @@
       </div>
     </div>
     <div id="main-content">
-      <div class="main-top">
+      <div class="main-top" :style="{height:`${fullHeight}px`}">
         <div class="profile">
           <div class="user-logo">
             <img src="../assets/images/main/user.jpeg" alt />
@@ -67,18 +67,21 @@
           Sometimes ever,sometimes never.
           <span>@Author:Creepi</span>
         </div>
+        <waves></waves>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import musicWave from '@/components/wavesurfer/'
+import musicWave from '@/components/wavesurfer'
+import waves from '@/components/waves'
 import { musicsGet } from '@/api'
 
 export default {
   components: {
-    musicWave
+    musicWave,
+    waves
   },
   data() {
     return {
@@ -86,13 +89,32 @@ export default {
       userAnimate: null,
       hasHeader: 0,
       musicLoading: true,
-      musicsData: []
+      musicsData: [],
+      fullHeight: document.documentElement.clientHeight
     }
+  },
+   watch: {
+   fullHeight (val) {
+    if(!this.timer) {
+     this.fullHeight = val
+     this.timer = true
+     const that = this
+     setTimeout( ()=> {
+      that.timer = false
+     },400)
+    }
+   }
   },
   mounted() {
     this.fetchData()
     this.initAnimate()
     window.addEventListener('scroll', this.handleScroll)
+    window.onresize = () => {
+      return (() => {
+        window.fullHeight = document.documentElement.clientHeight
+        this.fullHeight = window.fullHeight
+      })()
+    }
   },
   methods: {
     fetchData() {
@@ -153,6 +175,7 @@ export default {
 @import '@/styles/keyframes.scss';
 #main {
   width: 100%;
+  height: 100%;
   // .back-blur {
   //   // filter: grayscale(50%) brightness(80%) blur(5px);
   // }
@@ -172,7 +195,8 @@ export default {
       width: 100%;
       height: 100%;
       position: absolute;
-      background-image: url('../assets/images/main/back.png');
+      background-image:url('../assets/images/main/waves.svg');
+      // background-image: url('../assets/images/main/back.png');
       background-repeat: repeat-x;
       background-position: center bottom;
     }
@@ -195,10 +219,9 @@ export default {
   }
   #main-content {
     width: 100%;
-    height: 100%;
-    position: absolute;
     z-index: 2;
     .main-top {
+      position: relative;
       width: 100%;
       height: 100%;
       .music-box {
@@ -327,7 +350,7 @@ export default {
       }
       .motto {
         color: hsla(0, 0%, 100%, 0.68);
-        margin: 30px 0;
+        margin: 30px 0 0 0;
       }
     }
   }

@@ -5,8 +5,7 @@
         <div class="card-header-left">今日新闻</div>
         <div class="card-header-right">{{ resData.day }}</div>
       </div>
-      <div class="card-content">
-      </div>
+      <div class="card-content"></div>
       <Cloading v-if="isLoading"></Cloading>
     </div>
     <div class="card-wrap">
@@ -17,6 +16,7 @@
       <div class="card-content">
         <Timeline v-bind:lineData="resData.content"></Timeline>
       </div>
+      <Cloading v-if="newsHisLoading"></Cloading>
     </div>
   </div>
 </template>
@@ -27,13 +27,14 @@ import Timeline from '@/components/timeline/timeline'
 import Cloading from '@/components/loading/loading'
 
 export default {
-  components:{
+  components: {
     Timeline,
     Cloading
   },
   data() {
     return {
       isLoading: true,
+      newsHisLoading: true,
       resData: {}
     }
   },
@@ -41,6 +42,7 @@ export default {
     fetchData() {
       historyTodayGet().then(res => {
         this.resData = res
+        this.newsHisLoading = false
       })
     }
   },
@@ -55,7 +57,7 @@ export default {
 #news {
   display: flex;
   justify-content: space-around;
-  align-items:flex-start;
+  align-items: flex-start;
   .card-wrap {
     align-items: flex-start;
     @include card;

@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      initAnimation: null
+      initAnimation: null,
     }
   },
   watch: {
@@ -68,6 +68,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/const.scss';
+
 .timeline {
   position: relative;
   .content-wrap {
@@ -81,14 +83,14 @@ export default {
       margin: 5px auto;
       padding: 8px;
       font-size: 14px;
-      border-bottom: 1px solid #42b983;
+      border-bottom: 1px solid $green;
       font-weight: bold;
       cursor: pointer;
       a{
         text-decoration: none;
       }
       &:hover{
-        color: #42b983;
+        color: $green;
 
       }
       .item-point {
@@ -98,7 +100,7 @@ export default {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #42b983;
+        background: $green;
       }
     }
     .item-left {
@@ -114,7 +116,7 @@ export default {
     .line-wrap {
       width: 2px;
       height: 100%;
-      background: #42b983;
+      background: $green;
       position: absolute;
       left: 50%;
       top: 50%;
