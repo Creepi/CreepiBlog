@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('//at.alicdn.com/t/font_1245845_lq0rohfnfb.css');
+@import url('//at.alicdn.com/t/font_1245845_c2don49a4im.css');
 @font-face {
   font-family: 'halofont';
   src: url('./assets/fonts/halo.ttf') format('truetype');

@@ -2,7 +2,7 @@
   <div id="news">
     <div class="card-wrap">
       <div class="card-header">
-        <div class="card-header-left">今日新闻</div>
+        <div class="card-header-left"><i class="iconfont icon-news"></i> 今日新闻</div>
         <div class="card-header-right">{{ resData.day }}</div>
       </div>
       <div class="card-content"></div>
@@ -10,7 +10,7 @@
     </div>
     <div class="card-wrap">
       <div class="card-header">
-        <div class="card-header-left">历史上的今天</div>
+        <div class="card-header-left"><i class="iconfont icon-lishi1"></i> 历史上的今天</div>
         <div class="card-header-right">{{ resData.day }}</div>
       </div>
       <div class="card-content">
