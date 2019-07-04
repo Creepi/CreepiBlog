@@ -14,3 +14,11 @@ export function historyTodayGet() {
     method: 'get'
   })
 }
+
+export function catsGet() {
+  // 获取知乎
+  return request({
+    url: `https://api.thecatapi.com/v1/images/search`,
+    method: 'get'
+  })
+}

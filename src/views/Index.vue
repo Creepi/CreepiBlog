@@ -36,11 +36,7 @@
           </div>
         </div>
         <div class="music-box">
-          <music-wave
-            v-if="musicsData.length>0"
-            :musics-data="musicsData"
-            :isLoading="musicLoading"
-          ></music-wave>
+          <music-wave :musics-data="musicsData" :isLoading="musicLoading"></music-wave>
         </div>
         <div class="site-logo">
           <div class="image-wrap">
@@ -51,6 +47,7 @@
         <div class="menu-wrap">
           <a href="#/home" :class="$route.name === 'Home'?'active':''">Home</a>
           <a href="#/news" :class="$route.name === 'News'?'active':''">News</a>
+          <a href="#/fun" :class="$route.name === 'Docs'?'active':''">Fun</a>
           <a href="#/timeline" :class="$route.name === 'Timeline'?'active':''">TimeLine</a>
           <a href="#/tools" :class="$route.name === 'Tools'?'active':''">Tools</a>
           <a href="#/docs" :class="$route.name === 'Docs'?'active':''">Docs</a>
@@ -93,17 +90,17 @@ export default {
       fullHeight: document.documentElement.clientHeight
     }
   },
-   watch: {
-   fullHeight (val) {
-    if(!this.timer) {
-     this.fullHeight = val
-     this.timer = true
-     const that = this
-     setTimeout( ()=> {
-      that.timer = false
-     },400)
+  watch: {
+    fullHeight(val) {
+      if (!this.timer) {
+        this.fullHeight = val
+        this.timer = true
+        const that = this
+        setTimeout(() => {
+          that.timer = false
+        }, 400)
+      }
     }
-   }
   },
   mounted() {
     this.fetchData()
@@ -195,19 +192,19 @@ export default {
       width: 100%;
       height: 100%;
       position: absolute;
-      background-image:url('../assets/images/main/waves.svg');
+      background-image: url('../assets/images/main/waves.svg');
       // background-image: url('../assets/images/main/back.png');
       background-repeat: repeat-x;
       background-position: center bottom;
     }
     // .filter {
-    //   width: 100%;
-    //   height: 100%;
-    //   background: #fe5757;
-    //   transform:translate3d(0,0,0);
-    //   animation: colorChange 30s ease-in-out infinite;
-    //   animation-fill-mode: both;
-    //   mix-blend-mode: overlay;
+    // width: 100%;
+    // height: 100%;
+    // background: #fe5757;
+    // transform:translate3d(0,0,0);
+    // animation: colorChange 30s ease-in-out infinite;
+    // animation-fill-mode: both;
+    // mix-blend-mode: overlay;
     // }
     .canvas-back {
       width: 100%;

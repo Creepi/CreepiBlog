@@ -35,6 +35,11 @@ export default new Router({
           path: '/docs',
           name: 'Docs',
           component: () => import('@/views/docs/Docs.vue')
+        },
+        {
+          path: '/fun',
+          name: 'Fun',
+          component: () => import('@/views/fun/Fun.vue')
         }
       ]
     }

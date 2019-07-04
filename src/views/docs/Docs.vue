@@ -17,8 +17,7 @@
         <template v-for="(item, index) in docLink">
           <div :key="item.name" class="link-item">
             <a :href="item.url" target="view_window">{{index + 1}}.{{item.name}}</a>
-                      <svg-icon :iconClass="item.icon"></svg-icon>
-
+            <svg-icon :iconClass="item.icon"></svg-icon>
           </div>
         </template>
       </div>

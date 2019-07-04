@@ -1,7 +1,7 @@
 <template>
   <div class="card-wrap">
     <div class="card-header">
-      <div v-if="weatherData" class="card-header-left"><i class="iconfont icon-wheather"></i>{{weatherData.city}}一周天气</div>
+      <div v-if="weatherData" class="card-header-left"><i class="iconfont icon-weather"></i>{{weatherData.city}}一周天气</div>
       <div v-if="weatherData" class="card-header-right"><i class="iconfont icon-location"></i>{{weatherData.country}}</div>
     </div>
     <div class="weather-wrap">

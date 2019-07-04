@@ -18,7 +18,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba($color: #000000, $alpha: 0.6);
+  background: rgba($color: #fff, $alpha: 0.6);
   border-radius: 5px;
   .svg-wrap {
     position: absolute;
