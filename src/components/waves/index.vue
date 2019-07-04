@@ -9,7 +9,9 @@ import SimplexNoise from 'simplex-noise'
 
 export default {
   data() {
-    return {}
+    return {
+      waves: null
+    }
   },
   mounted() {
     class Wave {
@@ -51,7 +53,7 @@ export default {
         this.ctx.beginPath()
         let x = null
         let y =null
-        for (let i = 0; i <= this.count; i++) {
+        for (let i = 0; i <= this.count; i+= 1) {
           this.speedX += 0.05
           x = i * (this.w / this.count)
           y =
@@ -66,7 +68,7 @@ export default {
         this.ctx.fill()
       }
     }
-    new Wave()
+    this.waves = new Wave()
   }
 }
 </script>
