@@ -30,7 +30,7 @@ export default {
     },
     musicsData: {
       type: Array,
-      default: () => [2]
+      default: () => [{pic:'',url:''}]
     }
   },
   watch: {

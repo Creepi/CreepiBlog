@@ -2,11 +2,11 @@
   <div id="fun">
     <div class="card-wrap cats-wrap">
       <div class="card-header">
-        <div class="card-header-left">云吸猫</div>
+        <div class="card-header-left"> <i class="iconfont icon-cat"></i> 云吸猫</div>
         <div class="card-header-right">0</div>
       </div>
       <div class="card-content">
-        <img :src="catImage" alt="" @click="fetchData">
+        <img :src="catImage" alt="" @click="fetchData"  @load="imageLoaded">
       </div>
       <Cloading v-if="catsLoading"></Cloading>
     </div>
@@ -33,6 +33,7 @@ export default {
   },
   data() {
     return {
+      catImage: '',
       catsLoading: true,
     }
   },
@@ -41,8 +42,10 @@ export default {
       this.catsLoading = true
       catsGet().then(res=>{
         this.catImage = res[0].url
-        this.catsLoading = false
       })
+    },
+    imageLoaded() {
+        this.catsLoading = false
     }
   },
   created() {

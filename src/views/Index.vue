@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="music-box">
-          <music-wave :musics-data="musicsData" :isLoading="musicLoading"></music-wave>
+          <music-wave v-if="musicsData.length > 0" :musics-data="musicsData" :isLoading="musicLoading"></music-wave>
         </div>
         <div class="site-logo">
           <div class="image-wrap">
