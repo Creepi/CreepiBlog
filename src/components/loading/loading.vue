@@ -1,5 +1,5 @@
 <template>
-  <div class="mask-loading">
+  <div v-if="vLoading" class="mask-loading">
     <div class="svg-wrap">
       <svg-icon iconClass="bars"></svg-icon>
     </div>
@@ -8,6 +8,22 @@
 
 <script>
 export default {
+  props:{
+    loading:{
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {
+      vLoading: this.loading
+    }
+  },
+  watch: {
+    loading(val){
+      this.vLoading = val
+    }
+  }
 }
 </script>
 

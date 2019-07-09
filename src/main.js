@@ -6,6 +6,7 @@ import anime from 'animejs'
 import VueParticles from 'vue-particles'
 import NProgress from 'nprogress' // 进度条
 import viserVue from 'viser-vue'
+import moment from 'moment'
 import _ from 'lodash'
 import Vue from 'vue'
 import App from './App'
@@ -14,6 +15,9 @@ import '../src/styles'
 import store from './store' // 引入store
 import '../src/assets/svgs'
 
+
+Vue.prototype.$moment = moment
+moment.locale('zh-cn')
 Vue.prototype._ = _
 Vue.use(viserVue)
 Vue.use(VueParticles)

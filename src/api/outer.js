@@ -23,10 +23,10 @@ export function catsGet() {
   })
 }
 
-export function holiday(date) {
+export function holidayGet() {
   // 获取知乎
   return request({
-    url: `http://timor.tech/api/holiday/year/${date}`,
+    url: `http://timor.tech/api/holiday/next/`,
     method: 'get',
   })
 }
