@@ -8,7 +8,9 @@
       <div class="card-header-right">距离{{holidayInfo.name}}还有{{holidayDistance}}天</div>
     </div>
     <div class="card-content">
-      <div></div>
+      <div class="process-wrap">
+        <Process></Process>
+      </div>
     </div>
     <Loading :loading="holidayLoading"></Loading>
   </div>
@@ -16,11 +18,13 @@
 
 <script>
 import Loading from '@/components/loading/loading'
+import Process from '../3dProcess'
 import { holidayGet } from '@/api/outer'
 
 export default {
   components: {
-    Loading
+    Loading,
+    Process
   },
   data() {
     return {
@@ -56,5 +60,10 @@ export default {
 .card-wrap {
   @include card;
   min-height: 350px;
+  .card-content{
+    .process-wrap{
+      margin-top: 100px;
+    }
+  }
 }
 </style>
