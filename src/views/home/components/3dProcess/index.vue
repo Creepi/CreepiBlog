@@ -1,19 +1,38 @@
 <template>
   <div class="process-wrap">
     <div class="square-box">
-      <div class="item front"></div>
-      <div class="item bottom"></div>
-      <div class="item back"></div>
-      <div class="item top"></div>
+      <div class="item front">
+        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      </div>
+      <div class="item bottom">
+        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      </div>
+      <div class="item back">
+        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      </div>
+      <div class="item top">
+        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      </div>
       <div class="item left"></div>
       <div class="item right"></div>
-      <div class="indicator" style="margin-left: calc(50% - 25px);">50%</div>
+      <div class="indicator" :style="{marginLeft:`calc(${percent}% - 90px)`}">{{text}}({{percent}}%)</div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    percent: {
+      type: Number,
+      default: 0
+    },
+    text: {
+      type: String,
+      default: ''
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -45,8 +64,7 @@ export default {}
       -webkit-transform-origin: 50% 100%;
       transform-origin: 50% 100%;
       background: rgba(232, 154, 173, 0.7);
-      &::before {
-        width: 50%;
+      .item-process {
         height: 100%;
         content: '';
         display: block;
@@ -55,13 +73,15 @@ export default {}
         margin: 0;
         background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #ec0071);
         box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
+        transition: 1s;
       }
     }
     .front {
       transform: rotateX(-90deg);
     }
     .bottom {
-      box-shadow: 0 20px 20px -5px rgba(0, 0, 70, 0.25), 0 -25px 200px 5px #4d5075, 0 -8px 200px 300px rgba(255, 255, 255, 0.4)
+      box-shadow: 0 20px 20px -5px rgba(0, 0, 70, 0.25),
+        0 -25px 200px 5px #4d5075, 0 -8px 200px 300px rgba(255, 255, 255, 0.4);
     }
     .back {
       transform: rotateX(-90deg) translateZ(-100px);
@@ -73,13 +93,12 @@ export default {}
     .indicator {
       box-shadow: 0px 15px 35px rgba(236, 0, 113, 0.3);
       background: #ec0071;
-      width: 50px;
+      width: 200px;
       height: 50px;
       color: white;
-      -webkit-transform: translateY(120px);
       transform: translateY(120px);
       text-align: center;
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 900;
       line-height: 50px;
       &:before {
