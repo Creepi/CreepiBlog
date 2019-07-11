@@ -15,7 +15,7 @@
       </div>
       <div class="item left"></div>
       <div class="item right"></div>
-      <div class="indicator" :style="{marginLeft:`calc(${percent}% - 90px)`}">{{text}}({{percent}}%)</div>
+      <div class="indicator" :style="{marginLeft:`calc(${percent/2}% - 100px)`}">{{text}}({{percent}}%)</div>
     </div>
   </div>
 </template>
@@ -31,11 +31,12 @@ export default {
       type: String,
       default: ''
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+$danger:rgba(232, 154, 173, 0.7);
 .process-wrap {
   perspective: 1000px;
   text-align: center;
@@ -63,7 +64,7 @@ export default {
       left: 0;
       -webkit-transform-origin: 50% 100%;
       transform-origin: 50% 100%;
-      background: rgba(232, 154, 173, 0.7);
+
       .item-process {
         height: 100%;
         content: '';
@@ -75,6 +76,9 @@ export default {
         box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
         transition: 1s;
       }
+    }
+    .danger{
+      background: $danger
     }
     .front {
       transform: rotateX(-90deg);
@@ -101,6 +105,7 @@ export default {
       font-size: 14px;
       font-weight: 900;
       line-height: 50px;
+      transition: 1s;
       &:before {
         content: '';
         position: absolute;
