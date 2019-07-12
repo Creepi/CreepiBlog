@@ -14,11 +14,14 @@
         <div :class="['item-process']" :style="{width:`${percent}%`}"></div>
       </div>
       <!-- <div :class="['item','left',`item-${type}`]"></div> -->
-      <div :class="['item-cover','right',`item-cover-${type}`]"></div>
+      <div :class="['item-cover','right',`item-cover-${type}`]" :style="{marginLeft:`${percent}%`}"></div>
       <div
-        :class="['indicator',type]"
+        :class="['indicator',`indicator-${type}`]"
         :style="{marginLeft:`calc(${percent/2}% - 100px)`}"
-      >{{text}}({{percent}}%)</div>
+      >
+        <div class="indicator-triangle"></div>
+        {{text}}({{percent}}%)
+      </div>
     </div>
   </div>
 </template>
@@ -44,22 +47,31 @@ export default {
 
 <style lang="scss" scoped>
 $red: rgba(232, 154, 173, 0.7);
-$yellow: rgba(255, 238, 0, 0.705);
-$green: rgba(118, 201, 0, 0.7);
+$yellow: rgba(241, 212, 103, 0.7);
+$green:rgba(118, 185, 155,0.7);
 $red-linear: #ec0071;
-$yellow-linear: #F1BF0F;
+$yellow-linear: #f1bf0f;
 $green-linear: #42b983;
 @mixin background-red {
   background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #ec0071);
-  box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
+  box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.7);
 }
 @mixin background-yellow {
-  background: linear-gradient(90deg, rgba(245, 239, 200, 0.5),#F1BF0F);
-  box-shadow: 0 1px 8px -6px rgba(241,195,15, 0.7);
+  background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #f1bf0f);
+  box-shadow: 0 1px 8px -6px rgba(241, 195, 15, 0.7);
 }
 @mixin background-green {
   background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #42b983);
-  box-shadow: 0 1px 8px -6px rgba(66,185,131,0.7);
+  box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
+}
+@mixin shadow-red{
+    box-shadow: 0px 15px 35px rgba(66, 185, 131, 0.7);
+}
+@mixin shadow-yellow{
+    box-shadow: 0px 15px 35px rgba(241, 195, 15, 0.7);
+}
+@mixin shadow-green{
+    box-shadow: 0px 15px 35px rgba(66, 185, 131, 0.7);
 }
 .process-wrap {
   perspective: 1000px;
@@ -86,9 +98,9 @@ $green-linear: #42b983;
       height: 100%;
       position: absolute;
       left: 0;
+      transition: 1s;
       -webkit-transform-origin: 50% 100%;
       transform-origin: 50% 100%;
-
       .item-process {
         height: 100%;
         display: block;
@@ -116,17 +128,18 @@ $green-linear: #42b983;
         @include background-green();
       }
     }
-    .item-cover{
-      width: 50%;
+    .item-cover {
+      position: absolute;
+      width: 100px;
       height: 100%;
     }
-    .item-cover-red{
+    .item-cover-red {
       background: $red-linear;
     }
-    .item-cover-green{
+    .item-cover-green {
       background: $green-linear;
     }
-    .item-cover-yellow{
+    .item-cover-yellow {
       background: $yellow-linear;
     }
     .front {
@@ -144,11 +157,10 @@ $green-linear: #42b983;
       box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
     }
     .right {
-      transform: rotateX(-90deg) translateZ(-100px);
+      transition: 1s;
+      transform: translateX(-50px) translateZ(50px) rotateY(90deg);
     }
     .indicator {
-      box-shadow: 0px 15px 35px rgba(236, 0, 113, 0.3);
-      background: #ec0071;
       width: 200px;
       height: 50px;
       color: white;
@@ -157,11 +169,9 @@ $green-linear: #42b983;
       font-size: 14px;
       font-weight: 900;
       line-height: 50px;
-      transition: 1s;
-      &:before {
-        content: '';
+      margin-top: 10px;
+      .indicator-triangle {
         position: absolute;
-        background: #ec0071;
         left: 0;
         right: 0;
         margin: auto;
@@ -169,8 +179,28 @@ $green-linear: #42b983;
         width: 25px;
         height: 25px;
         z-index: -1;
-        -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
+      }
+    }
+    .indicator-red {
+      background: $red-linear;
+      @include shadow-red();
+      .indicator-triangle {
+        background: $red-linear;
+      }
+    }
+    .indicator-green {
+      background: $green-linear;
+      @include shadow-green();
+      .indicator-triangle {
+        background: $green-linear;
+      }
+    }
+    .indicator-yellow {
+      background: $yellow-linear;
+      @include shadow-yellow();
+      .indicator-triangle {
+        background: $yellow-linear;
       }
     }
   }

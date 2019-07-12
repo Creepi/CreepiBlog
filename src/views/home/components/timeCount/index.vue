@@ -144,12 +144,12 @@ export default {
   min-height: 350px;
   .card-content {
     .process-wrap {
-      padding-top: 100px;
+      padding-top: 50px;
       background: #f4f4f4;
       .process-switch {
         display: flex;
         justify-content: center;
-        padding-bottom: 40px;
+        padding: 40px;
         .item-btn {
           padding: 12px 26px;
           background-color: #fff;
