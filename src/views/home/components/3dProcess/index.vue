@@ -1,21 +1,24 @@
 <template>
   <div class="process-wrap">
     <div class="square-box">
-      <div class="item front">
-        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      <div :class="['item','front',`item-${type}`]">
+        <div :class="['item-process']" :style="{width:`${percent}%`}"></div>
       </div>
-      <div class="item bottom">
-        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      <div :class="['item','bottom',`item-${type}`]">
+        <div :class="['item-process']" :style="{width:`${percent}%`}"></div>
       </div>
-      <div class="item back">
-        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      <div :class="['item','back',`item-${type}`]">
+        <div :class="['item-process']" :style="{width:`${percent}%`}"></div>
       </div>
-      <div class="item top">
-        <div class="item-process" :style="{width:`${percent}%`}"></div>
+      <div :class="['item','top',`item-${type}`]">
+        <div :class="['item-process']" :style="{width:`${percent}%`}"></div>
       </div>
-      <div class="item left"></div>
-      <div class="item right"></div>
-      <div class="indicator" :style="{marginLeft:`calc(${percent/2}% - 100px)`}">{{text}}({{percent}}%)</div>
+      <!-- <div :class="['item','left',`item-${type}`]"></div> -->
+      <div :class="['item-cover','right',`item-cover-${type}`]"></div>
+      <div
+        :class="['indicator',type]"
+        :style="{marginLeft:`calc(${percent/2}% - 100px)`}"
+      >{{text}}({{percent}}%)</div>
     </div>
   </div>
 </template>
@@ -30,13 +33,34 @@ export default {
     text: {
       type: String,
       default: ''
+    },
+    type: {
+      type: String,
+      default: 'red'
     }
-  },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-$danger:rgba(232, 154, 173, 0.7);
+$red: rgba(232, 154, 173, 0.7);
+$yellow: rgba(255, 238, 0, 0.705);
+$green: rgba(118, 201, 0, 0.7);
+$red-linear: #ec0071;
+$yellow-linear: #F1BF0F;
+$green-linear: #42b983;
+@mixin background-red {
+  background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #ec0071);
+  box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
+}
+@mixin background-yellow {
+  background: linear-gradient(90deg, rgba(245, 239, 200, 0.5),#F1BF0F);
+  box-shadow: 0 1px 8px -6px rgba(241,195,15, 0.7);
+}
+@mixin background-green {
+  background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #42b983);
+  box-shadow: 0 1px 8px -6px rgba(66,185,131,0.7);
+}
 .process-wrap {
   perspective: 1000px;
   text-align: center;
@@ -67,18 +91,43 @@ $danger:rgba(232, 154, 173, 0.7);
 
       .item-process {
         height: 100%;
-        content: '';
         display: block;
         position: absolute;
         bottom: 0;
         margin: 0;
-        background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #ec0071);
-        box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
         transition: 1s;
       }
     }
-    .danger{
-      background: $danger
+    .item-red {
+      background: $red;
+      .item-process {
+        @include background-red();
+      }
+    }
+    .item-yellow {
+      background: $yellow;
+      .item-process {
+        @include background-yellow();
+      }
+    }
+    .item-green {
+      background: $green;
+      .item-process {
+        @include background-green();
+      }
+    }
+    .item-cover{
+      width: 50%;
+      height: 100%;
+    }
+    .item-cover-red{
+      background: $red-linear;
+    }
+    .item-cover-green{
+      background: $green-linear;
+    }
+    .item-cover-yellow{
+      background: $yellow-linear;
     }
     .front {
       transform: rotateX(-90deg);
@@ -93,6 +142,9 @@ $danger:rgba(232, 154, 173, 0.7);
     .top {
       transform: translateZ(100px);
       box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
+    }
+    .right {
+      transform: rotateX(-90deg) translateZ(-100px);
     }
     .indicator {
       box-shadow: 0px 15px 35px rgba(236, 0, 113, 0.3);

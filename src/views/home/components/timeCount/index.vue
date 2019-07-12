@@ -9,7 +9,7 @@
     </div>
     <div class="card-content">
       <div class="process-wrap">
-        <Process :percent="processPercent" :text="processText"></Process>
+        <Process :percent="processPercent" :text="processText" :type="classType"></Process>
         <div class="process-switch">
           <div
             class="item-btn"
@@ -58,7 +58,6 @@ export default {
         .endOf('year')
         .diff(this.$moment().startOf('year'), 'days') + 1
 
-
     return {
       weekdayList: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       today: this.$moment().format('ll'),
@@ -77,7 +76,8 @@ export default {
       holidayInfo: {},
       processType: 'day',
       processText: '',
-      processPercent: 0
+      processPercent: 0,
+      classType: ''
     }
   },
   created() {
@@ -123,6 +123,13 @@ export default {
           break
         default:
           break
+      }
+      if (this.processPercent < 30) {
+        this.classType = 'red'
+      } else if (this.processPercent > 70) {
+        this.classType = 'green'
+      } else {
+        this.classType = 'yellow'
       }
     }
   }
