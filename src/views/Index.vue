@@ -47,7 +47,7 @@
         <div class="menu-wrap">
           <a href="#/home" :class="$route.name === 'Home'?'active':''">Home</a>
           <a href="#/news" :class="$route.name === 'News'?'active':''">News</a>
-          <a href="#/fun" :class="$route.name === 'Docs'?'active':''">Fun</a>
+          <a href="#/fun" :class="$route.name === 'Fun'?'active':''">Fun</a>
           <a href="#/timeline" :class="$route.name === 'Timeline'?'active':''">TimeLine</a>
           <a href="#/tools" :class="$route.name === 'Tools'?'active':''">Tools</a>
           <a href="#/docs" :class="$route.name === 'Docs'?'active':''">Docs</a>
