@@ -170,7 +170,9 @@ $green-linear: #42b983;
       font-weight: 900;
       line-height: 50px;
       margin-top: 10px;
+      transition: 1s;
       .indicator-triangle {
+        transition: 1s;
         position: absolute;
         left: 0;
         right: 0;
