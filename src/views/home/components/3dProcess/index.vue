@@ -53,7 +53,7 @@ $red-linear: #ec0071;
 $yellow-linear: #f1bf0f;
 $green-linear: #42b983;
 @mixin background-red {
-  background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #ec0071);
+  background: linear-gradient(90deg, rgba(245, 200, 200, 0.5), #ec0071);
   box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.7);
 }
 @mixin background-yellow {
@@ -61,11 +61,11 @@ $green-linear: #42b983;
   box-shadow: 0 1px 8px -6px rgba(241, 195, 15, 0.7);
 }
 @mixin background-green {
-  background: linear-gradient(90deg, rgba(245, 239, 200, 0.5), #42b983);
-  box-shadow: 0 1px 8px -6px rgba(236, 0, 113, 0.5);
+  background: linear-gradient(90deg, rgba(226, 245, 200, 0.5), #42b983);
+  box-shadow: 0 1px 8px -6px rgba(66, 185, 131,0.7);
 }
 @mixin shadow-red{
-    box-shadow: 0px 15px 35px rgba(66, 185, 131, 0.7);
+    box-shadow: 0px 15px 35px rgba(236, 0, 113,0.7);
 }
 @mixin shadow-yellow{
     box-shadow: 0px 15px 35px rgba(241, 195, 15, 0.7);
