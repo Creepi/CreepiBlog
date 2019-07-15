@@ -2,7 +2,11 @@
   <div class="timeline">
     <div class="content-wrap">
       <template v-for="(item,index) in lineData">
-        <div @click="pageHref('https://www.baidu.com/s?wd=' + item)" :key="index" :class="(index+2) % 2 === 0?'item-left':'item-right'">
+        <div
+          @click="pagehref('https://www.baidu.com/s?wd=' + item)"
+          :key="index"
+          :class="(index+2) % 2 === 0?'item-left':'item-right'"
+        >
           <span>{{item}}</span>
           <span class="item-point"></span>
         </div>
@@ -26,7 +30,7 @@ export default {
   },
   data() {
     return {
-      initAnimation: null,
+      initAnimation: null
     }
   },
   watch: {
@@ -48,13 +52,13 @@ export default {
         })
         this.initAnimation.add({
           targets: '.item-left',
-          translateX: -100,
+          translateX: -90,
           delay: this.$anime.stagger(100) // increase delay by 100ms for each elements.
         })
         this.initAnimation.add(
           {
             targets: '.item-right',
-            translateX: 100,
+            translateX: 90,
             delay: this.$anime.stagger(100) // increase delay by 100ms for each elements.
           },
           0
@@ -62,7 +66,9 @@ export default {
         this.initAnimation.play()
       })
     },
-    pagehref: pageHref
+    pagehref(url) {
+      pageHref(url)
+    }
   }
 }
 </script>
@@ -73,25 +79,24 @@ export default {
 .timeline {
   position: relative;
   .content-wrap {
-    width: 80%;
+    width: 90%;
     margin: 20px auto;
     .item-left,
     .item-right {
       position: relative;
       box-sizing: border-box;
-      width: 200px;
+      width: 180px;
       margin: 5px auto;
       padding: 8px;
       font-size: 14px;
       border-bottom: 1px solid $green;
       font-weight: bold;
       cursor: pointer;
-      a{
+      a {
         text-decoration: none;
       }
-      &:hover{
+      &:hover {
         color: $green;
-
       }
       .item-point {
         position: absolute;

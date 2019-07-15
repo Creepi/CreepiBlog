@@ -30,3 +30,15 @@ export function holidayGet() {
     method: 'get',
   })
 }
+
+export function newsGet(country) {
+  // 获取知乎
+  return request({
+    url: `https://newsapi.org/v2/top-headlines`,
+    method: 'get',
+    params:{
+      'country': country,
+      'apiKey': 'fcfa0fe1280841f6b416bcd3ef0dffd5'
+    }
+  })
+}
