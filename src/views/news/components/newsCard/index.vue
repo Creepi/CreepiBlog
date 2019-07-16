@@ -25,7 +25,7 @@ export default {
   },
   filters:{
     timeAgo(date) {
-      let minutes = this.$moment(date).get('minutes')
+      const minutes = this.$moment(date).get('minutes')
       return minutes
     }
   },
