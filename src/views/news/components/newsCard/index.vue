@@ -3,10 +3,10 @@
     <div class="news-content">
       <div class="news-title" @click="pagehref(newsdata.url)">{{newsdata.title}}</div>
       <div class="news-description">{{newsdata.description}}</div>
-      <div class="news-footer">{{newsdata.publishedAt}}</div>
+      <div class="news-footer">{{dateFormat(newsdata.publishedAt)}}</div>
     </div>
     <div class="news-image" v-if="newsdata.urlToImage">
-      <img :src="newsdata.urlToImage" alt />
+      <img :src="newsdata.urlToImage" alt="图片加载失败" :onerror="`this.src = '${require('../../../../assets/images/image_error.png')}'`"/>
     </div>
   </div>
 </template>
@@ -30,10 +30,15 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+    }
   },
   methods:{
-    pagehref:pageHref
+    pagehref:pageHref,
+    dateFormat: (date)=> {
+      let res = this.$moment(date).format('MMMM Do YYYY, h:mm:ss a')
+      return res
+    }
   }
 }
 </script>
@@ -77,11 +82,16 @@ export default {
   }
   .news-image {
     width: 160px;
+    min-width: 160px;
     overflow: hidden;
     display: inline-block;
     vertical-align: middle;
+    display: flex;
+    align-items: center;/*副轴居中*/
+    padding-left: 10px;
     img {
       width: 100%;
+      display: flex;
     }
   }
 }
