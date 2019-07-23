@@ -99,6 +99,7 @@ $green-linear: #42b983;
       position: absolute;
       left: 0;
       transition: 1s;
+      z-index: 1;
       -webkit-transform-origin: 50% 100%;
       transform-origin: 50% 100%;
       .item-process {
@@ -108,6 +109,7 @@ $green-linear: #42b983;
         bottom: 0;
         margin: 0;
         transition: 1s;
+        z-index: 2;
       }
     }
     .item-red {

@@ -36,7 +36,7 @@ export default {
   methods:{
     pagehref:pageHref,
     dateFormat: (date)=> {
-      let res = this.$moment(date).format('MMMM Do YYYY, h:mm:ss a')
+      const res = this.$moment(date).format('MMMM Do YYYY, h:mm:ss a')
       return res
     }
   }

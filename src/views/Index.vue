@@ -186,7 +186,7 @@ export default {
     // transition: filter 1.5s;
     background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
     animation-fill-mode: both;
-    mix-blend-mode: overlay;
+    // mix-blend-mode: overlay;
     z-index: -20;
     .landscape {
       width: 100%;
