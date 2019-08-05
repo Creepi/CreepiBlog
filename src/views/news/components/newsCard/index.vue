@@ -3,7 +3,7 @@
     <div class="news-content">
       <div class="news-title" @click="pagehref(newsdata.url)">{{newsdata.title}}</div>
       <div class="news-description">{{newsdata.description}}</div>
-      <div class="news-footer">{{dateFormat(newsdata.publishedAt)}}</div>
+      <div class="news-footer">{{newsdata.publishedAt}}</div>
     </div>
     <div class="news-image" v-if="newsdata.urlToImage">
       <img :src="newsdata.urlToImage" alt="图片加载失败" :onerror="`this.src = '${require('../../../../assets/images/image_error.png')}'`"/>

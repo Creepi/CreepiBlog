@@ -1,6 +1,6 @@
 <template>
   <div class="timeline">
-    <div class="content-wrap">
+    <div v-if="lineData.length > 0" class="content-wrap">
       <template v-for="(item,index) in lineData">
         <div
           @click="pagehref('https://www.baidu.com/s?wd=' + item)"
@@ -13,6 +13,7 @@
       </template>
       <div class="line-wrap"></div>
     </div>
+    <div v-else style="margin:20px">No Data</div>
   </div>
 </template>
 
